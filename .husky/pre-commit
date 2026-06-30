@@ -1,0 +1,5 @@
+yarn run format
+
+yarn run lint --max-warnings 0
+
+yarn run typecheck

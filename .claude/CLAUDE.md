@@ -101,6 +101,10 @@ Inline `style` objects are only acceptable for genuinely dynamic values computed
 
 If a Mantine equivalent does not exist for a specific use case, use `<Box component="...">` to render the underlying tag while keeping Mantine's styling system (`className`, style props, theme tokens). Raw HTML tags are only acceptable inside dedicated low-level primitives (e.g., inside a custom component that wraps a Mantine `Box`).
 
+### One Component per File Rule
+
+**Do NOT define multiple React components in one file.** Each component lives in its own file. When a component needs a helper/sub-component (e.g., `SupportChat` renders a `MessageBubble` for each message), extract it into a separate file inside the parent component's folder (`src/components/SupportChat/MessageBubble.tsx`) — or into its own component folder if it is reusable elsewhere. Bad: `const MessageBubble = (...) => ...` declared at the top of `SupportChat.tsx`. This applies to all named sub-components, including small presentational ones; only trivial non-JSX helpers (formatters, constants) may stay in the parent file, following the component-folder template (`ComponentUtils.ts`, `ComponentConstants.ts`).
+
 ### Internationalization
 
 All user-facing strings go through i18next. Locale files: `src/i18n/ru.json` and `src/i18n/tj.json`. ICU MessageFormat is supported for pluralization. Language is auto-detected from browser/localStorage with Russian as fallback.

@@ -71,6 +71,19 @@ Vite and TypeScript are configured with aliases — use them instead of relative
 
 Mantine component library + CSS Modules. Theme customization in `src/styles/theme.tsx`. Global styles in `src/styles/global.css`. Use `clsx` for conditional classNames.
 
+---
+
+**Z-index**: do NOT hardcode `z-index` numbers. Use Mantine's z-index CSS variables instead — `var(--mantine-z-index-app)` (100), `var(--mantine-z-index-modal)` (200), `var(--mantine-z-index-popover)` (300), `var(--mantine-z-index-overlay)` (400), `var(--mantine-z-index-max)` (9999).
+
+### No Inline Styles Rule
+
+**Do NOT use the `style={{ ... }}` inline-style prop.** Styling priority, in order:
+
+1. **CSS Modules** (`className={styles.x}`) — the default for any non-trivial styling.
+2. **Mantine style props / theme tokens** — `bg`, `c`, `w`, `maw`, `mih`, `p`, `pos`, `flex`, etc. Allowed for simple layout/spacing and one-off properties.
+
+Inline `style` objects are only acceptable for genuinely dynamic values computed at runtime that cannot be expressed via a class or prop (e.g. `style={{ width: ${progress}% }}`). Static values — colors, `overflow`, `background`, etc. — must go through a Mantine prop or a CSS Module class. Move CSS custom properties (`var(--dci-ink)`, hardcoded hex like `#dfe3e7`) into the theme or a `.module.css` file.
+
 ### UI Components Rule
 
 **Do NOT use native HTML tags in JSX.** Always use Mantine components instead:
@@ -91,3 +104,5 @@ If a Mantine equivalent does not exist for a specific use case, use `<Box compon
 ### Internationalization
 
 All user-facing strings go through i18next. Locale files: `src/i18n/ru.json` and `src/i18n/tj.json`. ICU MessageFormat is supported for pluralization. Language is auto-detected from browser/localStorage with Russian as fallback.
+
+**Adding new strings:** add new keys **only** to [src/i18n/locales/ru.json](src/i18n/locales/ru.json). Do NOT add or translate them into `tj.json` — the Tajik translations are done manually by a human.

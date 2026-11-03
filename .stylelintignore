@@ -1,0 +1,6 @@
+.next
+out
+dist
+node_modules
+src/styles/global.d.css
+src/components/CategoryFilters/CategoryFilters.module.css

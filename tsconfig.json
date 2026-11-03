@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "types": ["node", "@testing-library/jest-dom", "vitest/globals"],
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components": ["src/components"],
+      "@assets": ["src/assets"],
+      "@icons": ["src/icons"],
+      "@pages": ["src/pages"],
+      "@utils": ["src/utils"],
+      "@hooks": ["src/hooks"],
+      "@providers": ["src/providers"],
+      "@config": ["src/config"],
+      "@services": ["src/services"],
+      "@styles": ["src/styles"],
+      "@test-utils": ["src/test-utils"],
+      "@i18n": ["src/i18n"]
+    }
+  },
+  "include": ["src", "src/test-utils", ".storybook/main.ts", ".storybook/preview.tsx"]
+}
